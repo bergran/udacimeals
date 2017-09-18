@@ -3,6 +3,20 @@ import {
   REMOVE_FROM_CALENDAR
 } from '../actions'
 
+const food = (state = {}, action) => {
+  switch (action.type) {
+      case ADD_RECIPE:
+        const { recipe } = action;
+
+        return {
+            ...state,
+            [action.label]: recipe
+        };
+      default :
+        return state;
+  }
+};
+
 const initialCalendarState = {
   sunday: {
     breakfast: null,
@@ -39,10 +53,10 @@ const initialCalendarState = {
     lunch: null,
     dinner: null
   },
-}
+};
 
 function calendar (state = initialCalendarState, action) {
-  const { day, meal, recipe } = action
+  const { day, meal, recipe } = action;
   switch (action.type) {
     case ADD_RECIPE :
       return {
@@ -51,7 +65,7 @@ function calendar (state = initialCalendarState, action) {
           ...state[day],
           [meal]: recipe.label
         }
-      }
+      };
     case REMOVE_FROM_CALENDAR :
       return {
         ...state,
@@ -59,7 +73,7 @@ function calendar (state = initialCalendarState, action) {
           ...state[day],
           [meal]: null
         }
-      }
+      };
     default:
       return state
   }
