@@ -5,6 +5,7 @@ import {
 import { combineReducers } from 'redux'
 
 const food = (state = {}, action) => {
+  console.log('action', action)
   switch (action.type) {
       case ADD_RECIPE:
         const { recipe } = action;
