@@ -5,14 +5,12 @@ import {
 import { combineReducers } from 'redux'
 
 const food = (state = {}, action) => {
-  console.log('action', action)
   switch (action.type) {
       case ADD_RECIPE:
         const { recipe } = action;
-
         return {
             ...state,
-            [action.label]: recipe
+            [recipe.label]: recipe
         };
       default :
         return state;
@@ -61,6 +59,12 @@ function calendar (state = initialCalendarState, action) {
   const { day, meal, recipe } = action;
   switch (action.type) {
     case ADD_RECIPE :
+      console.log({
+          ...state,
+          [day]: {
+              ...state[day],
+              [meal]: recipe.label
+          }})
       return {
         ...state,
         [day]: {
